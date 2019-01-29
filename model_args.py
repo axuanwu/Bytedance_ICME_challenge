@@ -1,6 +1,9 @@
 import argparse
 
 def init_model_args():
+  """
+  Basic but important params for traning
+  """
   parser = argparse.ArgumentParser()
   # training size
   parser.add_argument('--batch_size', type=int, default=40)

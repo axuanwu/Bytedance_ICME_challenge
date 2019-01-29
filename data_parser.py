@@ -1,7 +1,11 @@
 import numpy as np
 import tensorflow as tf
 class PosShifts(object):
-  """class for parser data"""
+  """
+  Position shifts will be caused by different fields,
+  thus, we need to take it into our consideration.
+  This class is used for removing position shifts
+  """
 
   _shifts = []
   def __init__(self, track):
@@ -33,6 +37,9 @@ class PosShifts(object):
     return shifts
 
 class LineParser(object):
+  """
+  class for parsing tf input line
+  """
   @staticmethod
   def parse_finish_line(line):
     """
@@ -52,6 +59,9 @@ class LineParser(object):
     return tf.py_func(DataParser.data_parser, [line, 7], [tf.int32, tf.float32, tf.float32])
 
 class DataParser(object):
+  """
+  Detailed operator foe line input
+  """
   @staticmethod
   def data_parser(line, label_index):
     """ parser line content and generate idx, features, and gts """

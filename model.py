@@ -1,6 +1,4 @@
 """ import necessary packages"""
-import os
-import numpy as np
 import tensorflow as tf
 from data_parser import PosShifts, LineParser
 from tf_recommend_model_zoo import TFRecommendModels as tf_model_zoo
@@ -24,12 +22,11 @@ class RecommendModelHandler(object):
     self._track = track
 
 
-  def build_fm(self):
+  def build_model(self):
     """ build fm framework"""
-    #model_fn = tf_model_zoo.fm_model_fn(features, labels, mode == tf.estimator.ModeKeys.TRAIN, self._params)
     config = tf.estimator.RunConfig().replace(
-      session_config=tf.ConfigProto(device_count={'CPU':self._num_threads}),
-      log_step_count_steps=20)
+        session_config=tf.ConfigProto(device_count={'CPU':self._num_threads}),
+        log_step_count_steps=20)
     PosShifts(self._track)
     feature_size = PosShifts.get_features_num()
     params={
@@ -38,15 +35,14 @@ class RecommendModelHandler(object):
         'learning_rate': self._learning_rate,
         'field_size': 5,
         'batch_size': self._batch_size,
-        'optimizer': self._optimizer
-        }
+        'optimizer': self._optimizer}
 
-    fm = tf.estimator.Estimator(
+    model = tf.estimator.Estimator(
         model_fn=tf_model_zoo.fm_model_fn,
         model_dir=self._save_model_dir,
         params=params,
         config=config)
-    return fm
+    return model
 
   def prepare_data_fn(self, data_mode='train'):
     """ prepare train, val fn"""
@@ -76,12 +72,11 @@ class RecommendModelHandler(object):
     return feature_infos, labels
 
 
-
   def train(self):
-    fm = self.build_fm()
+    """
+    Train model
+    """
+    model = self.build_model()
     train_spec = tf.estimator.TrainSpec(input_fn=lambda: self.prepare_data_fn(data_mode='train'))
     val_spec = tf.estimator.EvalSpec(input_fn=lambda: self.prepare_data_fn(data_mode='val'))
-    tf.estimator.train_and_evaluate(fm, train_spec, val_spec)
-
-
-
+    tf.estimator.train_and_evaluate(model, train_spec, val_spec)

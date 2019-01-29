@@ -11,4 +11,5 @@ For training, you should execute bash train.sh with some import params:
   @6: optimizer [choices: adagrad, adam]
   @7: lr
   @8: task [choices: finish, like]
+  @9: track [choices: 1, 2]
 
