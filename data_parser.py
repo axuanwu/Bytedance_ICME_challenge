@@ -2,17 +2,30 @@ import numpy as np
 import tensorflow as tf
 class PosShifts(object):
   """class for parser data"""
+
+  _shifts = []
+  def __init__(self, track):
+    PosShifts._track = track
+    if track == 1:
+      PosShifts._shifts = [663011, 0, 31180492, 15595718, 410, 6]
+    elif track == 2:
+      PosShifts._shifts = [73974, 396, 4122689, 850308, 461, 5]
+    else:
+      raise Exception("unknown track", track)
+
   @staticmethod
   def get_features_num():
-      index_shift = [73974, 396, 4122689, 850308, 461, 5]
-      all_shift = reduce(lambda x, y: x+y, index_shift)
-      return all_shift
+    index_shift = PosShifts._shifts
+    all_shift = reduce(lambda x, y: x+y, index_shift)
+    return all_shift
 
 
   @staticmethod
   def shift():
     """ position shifts for different field features """
-    shifts = [0, 73974, 396, 4122689, 850308, 461, 5]
+    shifts = PosShifts._shifts
+    shifts = [0] + shifts
+
     sum = 0
     for index, shift in enumerate(shifts):
       sum += shift

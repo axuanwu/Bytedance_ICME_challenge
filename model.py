@@ -9,7 +9,7 @@ class RecommendModelHandler(object):
   """ fm simple model"""
   def __init__(self, train_dataset_path, val_dataset_path, save_model_dir,  \
       learning_rate=0.1, num_threads=1, num_epochs=100, batch_size=40,  \
-      embedding_size=100, optimizer='adam', task="finish"):
+      embedding_size=100, optimizer='adam', task="finish", track=2):
     """ init basic params"""
     self._learning_rate = learning_rate
     self._num_threads = num_threads
@@ -21,6 +21,7 @@ class RecommendModelHandler(object):
     self._embedding_size = embedding_size
     self._optimizer = optimizer
     self._task = task
+    self._track = track
 
 
   def build_fm(self):
@@ -29,6 +30,7 @@ class RecommendModelHandler(object):
     config = tf.estimator.RunConfig().replace(
       session_config=tf.ConfigProto(device_count={'CPU':self._num_threads}),
       log_step_count_steps=20)
+    PosShifts(self._track)
     feature_size = PosShifts.get_features_num()
     params={
         'feature_size': feature_size,

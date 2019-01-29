@@ -19,5 +19,8 @@ def init_model_args():
   #task
   parser.add_argument('--task', default="finish")
 
+  #track
+  parser.add_argument('--track', type=int, default=2)
+
   args = parser.parse_args()
   return args
