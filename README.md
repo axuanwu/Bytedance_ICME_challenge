@@ -11,5 +11,8 @@ For training, you should execute bash train.sh with some import params:
   @6: optimizer [choices: adagrad, adam]
   @7: lr
   @8: task [choices: finish, like]
-  @9: track [choices: 1, 2]
+  @9: track [choices: 1, 2]  
+  
+You can train icme data by our code directly without any preprocessing.  
+Five fields (user_id, user_city, item_id，author_id，item_city) are adopted in our code.
 
