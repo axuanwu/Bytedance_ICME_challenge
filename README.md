@@ -3,11 +3,13 @@ REPO DESCRIPTION
 Our FM implementation is based on tensorflow 1.12.0.  
 You can run our reference training code on-the-fly using the following command:  
 
- *  ./train.sh <training_path> <validation_path> <save_model_dir> <batch_size> <embedding_size> <optimizer [adagrad, adam]> <lr> <task [finish, like]> <track [1, 2]>  
+<pre><code> ./train.sh  training_path validation_path save_model_dir batch_size embedding_size   
+&nbsp; &nbsp;&nbsp;  &nbsp; &nbsp;  optimizer[adagrad, adam] lr task[finish, like] track[1, 2]  </code></pre>
  
 CODE STRUCTURE
 --------------  
-train.py  
+
+<pre><code>train.py  
 train.sh  
 common/  
   &nbsp; &nbsp; &nbsp; model_args.py  
@@ -19,7 +21,7 @@ model_zoo/
  &nbsp; &nbsp; &nbsp; fm.py  
 utils/  
  &nbsp; &nbsp; &nbsp; utils.py
-
+ </code></pre>
 
 
 ALGORITHM: FACTORIZATION MACHINE
@@ -31,10 +33,10 @@ BASELINE
 -------  
 Our baseline results with 5 features (user_id, user_city, item_id，author_id，item_city):   
 
-  * track2 like task:   
+  * TRACK2 LIKE TASK:   
     auc 86.5%   
     (params: embedding_size=40, adam lr= 0.0005)  
-  * track2 finish task:  
+  * TRACK FINISH TASK:  
     auc 69.8%  
     (params: embedding_size =40, adam lr=0.0001)
 
