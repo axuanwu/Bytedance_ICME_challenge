@@ -53,14 +53,14 @@ Our baseline results with 5 features (user_id, user_city, item_id，author_id，
   * TRACK2 LIKE TASK: 
   ```  
     auc 86.5% 
-    #-----params-----#
+    #------------------------params-------------------------#
     embedding_size=40
     adam lr= 0.0005
   ```
   * TRACK FINISH TASK: 
   ```  
     auc 69.8% 
-    #-----params-----#
+    #------------------------params-------------------------#
     embedding_size =40
     adam lr=0.0001
   ```
