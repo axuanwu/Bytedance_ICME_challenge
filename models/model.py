@@ -1,10 +1,11 @@
 """ import necessary packages"""
 import tensorflow as tf
-from data_parser import PosShifts, LineParser
-from tf_recommend_model_zoo import TFRecommendModels as tf_model_zoo
+from data_io.data_parser import PosShifts, LineParser
+from model_zoo.fm import FMModel
+
 
 class RecommendModelHandler(object):
-  """ fm simple model"""
+  """ class for setup recommend model """
   def __init__(self, train_dataset_path, val_dataset_path, save_model_dir,  \
       learning_rate=0.1, num_threads=1, num_epochs=100, batch_size=40,  \
       embedding_size=100, optimizer='adam', task="finish", track=2):
@@ -23,7 +24,7 @@ class RecommendModelHandler(object):
 
 
   def build_model(self):
-    """ build fm framework"""
+    """ build recommend model framework"""
     config = tf.estimator.RunConfig().replace(
         session_config=tf.ConfigProto(device_count={'CPU':self._num_threads}),
         log_step_count_steps=20)
@@ -38,7 +39,7 @@ class RecommendModelHandler(object):
         'optimizer': self._optimizer}
 
     model = tf.estimator.Estimator(
-        model_fn=tf_model_zoo.fm_model_fn,
+        model_fn=FMModel.fm_model_fn,
         model_dir=self._save_model_dir,
         params=params,
         config=config)

@@ -1,14 +1,14 @@
 
 import tensorflow as tf
 
-class TFModelParams(object):
+class FMModelParams(object):
   """ class for initializing weights """
   def __init__(self, feature_size, embedding_size):
     self._feature_size = feature_size
     self._embedding_size = embedding_size
 
   def initialize_weights(self):
-    """ init tf weights
+    """ init fm  weights
     Returns
     weights:
       feature_embeddings:  vi, vj second order params
@@ -36,8 +36,8 @@ class TFModelParams(object):
         shape=[1])
     return weights
 
-class TFRecommendModels(object):
-  """ class which provides some models for recommendation"""
+class FMModel(object):
+  """ FM implementation """
 
   @staticmethod
   def fm_model_fn(features, labels, mode, params):
@@ -59,7 +59,7 @@ class TFRecommendModels(object):
     feature_values = tf.reshape(feature_values, shape=[batch_size, field_size, 1])
 
     # tf fm weights
-    tf_model_params = TFModelParams(feature_size, embedding_size)
+    tf_model_params = FMModelParams(feature_size, embedding_size)
     weights = tf_model_params.initialize_weights()
     embeddings = tf.nn.embedding_lookup(
         weights["feature_embeddings"],

@@ -1,8 +1,8 @@
 import os
 import tensorflow as tf
-from utils import get_dataset_path_list
-from model_args import init_model_args
-from model import RecommendModelHandler
+from utils.utils import get_dataset_path_list
+from common.model_args import init_model_args
+from models.model import RecommendModelHandler
 
 
 def main():
