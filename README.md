@@ -5,6 +5,22 @@ You can run our reference training code on-the-fly using the following command:
 
  *  ./train.sh <training_path> <validation_path> <save_model_dir> <batch_size> <embedding_size> <optimizer [adagrad, adam]> <lr> <task [finish, like]> <track [1, 2]>  
  
+CODE STRUCTURE
+--------------  
+train.py  
+train.sh  
+common/  
+  &nbsp; &nbsp; &nbsp; model_args.py  
+data_io/  
+ &nbsp; &nbsp; &nbsp; data_parser.py  
+models/  
+ &nbsp; &nbsp;&nbsp;  model.py  
+model_zoo/  
+ &nbsp; &nbsp; &nbsp; fm.py  
+utils/  
+ &nbsp; &nbsp; &nbsp; utils.py
+
+
 
 ALGORITHM: FACTORIZATION MACHINE
 --------------------------------
