@@ -9,7 +9,7 @@ You can run our reference training code on-the-fly using the following command:
 ALGORITHM: FACTORIZATION MACHINE
 --------------------------------
 
-![image](https://github.com/challenge-ICME2019-Bytedance/Bytedance_ICME_challenge/edit/master/images/fm.jpg)
+![image](https://github.com/challenge-ICME2019-Bytedance/Bytedance_ICME_challenge/raw/master/images/fm.jpg)
 
 BASELINE
 -------  
